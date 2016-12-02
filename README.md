@@ -9,4 +9,5 @@
 ## TODO
 - Basica auth for Mvp User
 - Get rid of `--allow-superuser --unsafe-perm` in npm start
+- add all uniforms components
 - various TBD
