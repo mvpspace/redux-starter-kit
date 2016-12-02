@@ -1,0 +1,27 @@
+{
+  "public": {
+    "appSSL": false,
+    "appDomain": "name.mvp-space.com",
+    "landingDomain": "app",
+    "reservedDomains": [
+      "api",
+      "blog",
+      "www"
+    ],
+    "cookieName": "name-cross-domain-login-token",
+    "invitationsExpireInDays": 30,
+    "daysOfCompletedTasksVisible": 30,
+    "uploadFileSizeLimitMb": 100,
+    "uploadQuoataMb": 1024
+  },
+  "emails": {
+    "fromName": "Name",
+    "from": "noreply@name.com",
+    "support": "support@name.com"
+  },
+  "basicauth": {
+    "protected": false,
+    "user": "user",
+    "password": "MvpUser"
+  }
+}
