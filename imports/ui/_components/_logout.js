@@ -7,8 +7,7 @@ export const Logout = ({ nextPathname = '/login' }) => {
   const logout = () => {
     Meteor.logout(err => {
       if (!err) {
-        const toast = Toaster.create({position: Position.TOP})
-        toast.show({message: 'Logged out', iconName:'pt-icon-info-sign', intent: Intent.WARNING})
+        Toaster.create().show({message: 'Logged out', iconName:'pt-icon-info-sign', intent: Intent.WARNING})
         browserHistory.push(nextPathname)
       }
     })

@@ -20,13 +20,6 @@ export class Login extends Component {
     }
   })
 
-  toast = undefined
-
-  componentDidMount() {
-    this.toast = Toaster.create({
-      position: Position.TOP,
-    })
-  }
 
   registerUser() {
     browserHistory.push('/signup')
@@ -37,10 +30,10 @@ export class Login extends Component {
     const {email,password} = doc;
     Meteor.loginWithPassword(email, password, (error) => {
       if (error) {
-        this.toast.show({ message: error.reason, iconName:'pt-icon-error', intent: Intent.DANGER })
+        Toaster.create().show({ message: error.reason, iconName:'pt-icon-error', intent: Intent.DANGER })
       }
       else {
-        this.toast.show({ message: 'Logged in!!', iconName:'pt-icon-tick', intent: Intent.SUCCESS })
+        Toaster.create().show({ message: 'Logged in!!', iconName:'pt-icon-tick', intent: Intent.SUCCESS })
         browserHistory.push('/')
       }
     })

@@ -13,14 +13,6 @@ export class Signup extends Component {
 
   userSignupSchema = signupSchema
 
-  toast = undefined
-
-  componentDidMount() {
-    this.toast = Toaster.create({
-      position: Position.TOP,
-    })
-  }
-
   loginUser() {
     browserHistory.push('/')
   }
@@ -32,14 +24,14 @@ export class Signup extends Component {
     signupAccount.call(doc, (error, result) => {
 
       if (error) {
-        this.toast.show({ message: error.reason, iconName:'pt-icon-error', intent: Intent.DANGER })
+        Toaster.create().show({ message: error.reason, iconName:'pt-icon-error', intent: Intent.DANGER })
       } else if (result === 'OK')
         {
           Meteor.loginWithPassword(email, password, (error) => {
             if (error) {
-              this.toast.show({ message: error.reason, iconName:'pt-icon-error', intent: Intent.DANGER })
+              Toaster.create().show({ message: error.reason, iconName:'pt-icon-error', intent: Intent.DANGER })
             } else {
-              this.toast.show({ message: 'User successfully created!!', iconName:'pt-icon-person', intent: Intent.SUCCESS })
+              Toaster.create().show({ message: 'User successfully created!!', iconName:'pt-icon-person', intent: Intent.SUCCESS })
           }
             browserHistory.push('/')
           })
