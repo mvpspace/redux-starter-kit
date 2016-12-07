@@ -3,11 +3,12 @@ import { Meteor } from 'meteor/meteor'
 import { Link, browserHistory } from 'react-router'
 import { SimpleSchema } from 'meteor/aldeed:simple-schema'
 import { AutoForm } from 'uniforms-unstyled'
-import { Position, Toaster, Intent } from '@blueprintjs/core'
+import { Intent } from '@blueprintjs/core'
 import { Flex, Box } from 'reflexbox'
 import { SETTING_PUBLIC } from '/imports/environment/enums'
 import { TextField, SubmitField } from '/imports/ui/_components/uniforms'
 import { signupAccount, signupSchema } from '/imports/api/accounts/methods'
+import { Toast } from "/imports/ui/_components"
 
 export class Signup extends Component {
 
@@ -24,14 +25,14 @@ export class Signup extends Component {
     signupAccount.call(doc, (error, result) => {
 
       if (error) {
-        Toaster.create().show({ message: error.reason, iconName:'pt-icon-error', intent: Intent.DANGER })
+        Toast.show({ message: error.reason, iconName:'pt-icon-error', intent: Intent.DANGER })
       } else if (result === 'OK')
         {
           Meteor.loginWithPassword(email, password, (error) => {
             if (error) {
-              Toaster.create().show({ message: error.reason, iconName:'pt-icon-error', intent: Intent.DANGER })
+              Toast.show({ message: error.reason, iconName:'pt-icon-error', intent: Intent.DANGER })
             } else {
-              Toaster.create().show({ message: 'User successfully created!!', iconName:'pt-icon-person', intent: Intent.SUCCESS })
+              Toast.show({ message: 'User successfully created!!', iconName:'pt-icon-person', intent: Intent.SUCCESS })
           }
             browserHistory.push('/')
           })

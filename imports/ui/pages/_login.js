@@ -3,7 +3,8 @@ import React, { Component, PropTypes } from 'react'
 import { browserHistory } from 'react-router'
 import { SimpleSchema } from 'meteor/aldeed:simple-schema'
 import { AutoForm } from 'uniforms-unstyled'
-import { Position, Toaster, Intent } from "@blueprintjs/core"
+import { Intent } from "@blueprintjs/core"
+import { Toast } from "/imports/ui/_components"
 import { Flex, Box } from 'reflexbox'
 import { TextField, SubmitField } from '/imports/ui/_components/uniforms'
 
@@ -30,10 +31,10 @@ export class Login extends Component {
     const {email,password} = doc;
     Meteor.loginWithPassword(email, password, (error) => {
       if (error) {
-        Toaster.create().show({ message: error.reason, iconName:'pt-icon-error', intent: Intent.DANGER })
+        Toast.show({ message: error.reason, iconName:'pt-icon-error', intent: Intent.DANGER })
       }
       else {
-        Toaster.create().show({ message: 'Logged in!!', iconName:'pt-icon-tick', intent: Intent.SUCCESS })
+        Toast.show({ message: "Logged In!", iconName:'pt-icon-tick', intent: Intent.SUCCESS })
         browserHistory.push('/')
       }
     })
@@ -78,7 +79,7 @@ export class Login extends Component {
               >Login</SubmitField>
             </ AutoForm>
             <p>
-              <a className="pt-icon pt-icon-user" onClick={this.registerUser}> Register a new User</a>
+              <a className="pt-icon pt-icon-new-person" onClick={this.registerUser}> Register a new User</a>
             </p>
           </div>
         </Box>

@@ -1,13 +1,14 @@
 import React, { PropTypes } from 'react'
 import { Meteor } from 'meteor/meteor'
 import { browserHistory } from 'react-router'
-import { Position, Toaster, Intent } from "@blueprintjs/core"
+import { Intent } from "@blueprintjs/core"
+import { Toast } from "/imports/ui/_components"
 
 export const Logout = ({ nextPathname = '/login' }) => {
   const logout = () => {
     Meteor.logout(err => {
       if (!err) {
-        Toaster.create().show({message: 'Logged out', iconName:'pt-icon-info-sign', intent: Intent.WARNING})
+        Toast.show({ message: "Logged Out", iconName:'pt-icon-info-sign', intent: Intent.WARNING})
         browserHistory.push(nextPathname)
       }
     })
