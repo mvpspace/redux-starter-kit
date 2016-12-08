@@ -3,12 +3,18 @@ import { Meteor } from 'meteor/meteor'
 import { browserHistory } from 'react-router'
 import { Intent } from "@blueprintjs/core"
 import { Toast } from "/imports/ui/_components"
+import { TOAST_MODIFIER } from '/imports/environment/enums'
 
 export const Logout = ({ nextPathname = '/login' }) => {
   const logout = () => {
     Meteor.logout(err => {
       if (!err) {
-        Toast.show({ message: "Logged Out", iconName:'pt-icon-info-sign', intent: Intent.WARNING})
+        Toast.show({
+          message: "Logged Out",
+          iconName:'pt-icon-info-sign',
+          intent: Intent.WARNING,
+          modifiers: [TOAST_MODIFIER.PILE]
+        })
         browserHistory.push(nextPathname)
       }
     })
